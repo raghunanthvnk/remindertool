@@ -78,7 +78,11 @@ export class ExcelUploadComponent  {
     console.log(selectedValue);
        
   }
-
+  downloadfile(value:any)
+  {
+    console.log(value);
+   
+  }
   validateRow(lst:any[]) : SpotCheck[]
   {
     var i:number;

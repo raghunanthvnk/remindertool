@@ -14,4 +14,9 @@ myStyle
 .form-group.required .control-label:after {
 	content:"*";
 	color:red;
-  }
+	}
+	
+.divhide
+{
+	display: none;
+}

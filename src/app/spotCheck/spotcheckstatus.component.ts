@@ -28,6 +28,7 @@ export class SpotCheckStatusComponent  implements OnInit
      public SCDetails:any;
      public btnSubmitText:string="Submit"
      public SuccessMessage:string="";
+     public divhide:boolean=true;
      msgdisplay = "hide";
     // datepicker package inherited from https://github.com/kekeh/mydatepicker  for functioning of datepicker
     //and register in system.js file and app.module file and import here
@@ -163,8 +164,8 @@ export class SpotCheckStatusComponent  implements OnInit
              var date= new Date(this.SCDetails.EXPECTED_CLOSURE_DATE);
              var date1= new Date(this.SCDetails.ACTUAL_CLOSURE_DATE);
              
-             this.SCDetails.EXPECTED_CLOSURE_DATE=date.getFullYear()+'-'+("0" + (date.getMonth()+1)).slice(-2)+'-'+("0" + date.getDay()).slice(-2);
-             this.SCDetails.ACTUAL_CLOSURE_DATE=date1.getFullYear()+'-'+("0" + (date1.getMonth()+1)).slice(-2)+'-'+("0" + date1.getDay()).slice(-2);
+             this.SCDetails.EXPECTED_CLOSURE_DATE=date.getFullYear()+'-'+("0" + (date.getMonth()+1)).slice(-2)+'-'+("0" + date.getDate()).slice(-2);
+             this.SCDetails.ACTUAL_CLOSURE_DATE=date1.getFullYear()+'-'+("0" + (date1.getMonth()+1)).slice(-2)+'-'+("0" + date1.getDate()).slice(-2);
 
             console.log("VALUE RECEIVED: ",response[1][0]);
             },
@@ -181,6 +182,7 @@ export class SpotCheckStatusComponent  implements OnInit
     btnSubmit()
     {
       console.log("button clicked");
+      debugger;
       var mode:string=this.btnSubmitText;
       var project_code:string=this.projectFieldsdtl.PROJECT_CODE;
 
@@ -200,7 +202,9 @@ export class SpotCheckStatusComponent  implements OnInit
         response=> {
           
           console.log("VALUE RECEIVED: ",response);
-          this.SuccessMessage="Data"+this.btnSubmitText+ "Successfully";
+          this.divhide=false
+          this.SuccessMessage="Data "+this.btnSubmitText+ " Successfully";
+          this.SCDetails='';
 
           },
         error=> {
