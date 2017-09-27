@@ -23,14 +23,14 @@ const EXCEL_EXTENSION = '.xlsx';
 })  
 export class ExcelUploadComponent  { 
  
-  public SpotChecklist: SpotCheck[];
+  public Checklist: SpotCheck[];
   public project_master:any[];
   public radio_button_opted:any;
 
   uploader:FileUploader;
 
   constructor(private uploadservice: UploadService ){
-    this.SpotChecklist=[];
+    this.Checklist=[];
     this.project_master=[];
    
   }
@@ -57,9 +57,9 @@ export class ExcelUploadComponent  {
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
     console.log("onSuccessItem " + status, response, item);  
     
-    this.SpotChecklist = JSON.parse(response); //success server response
+    this.Checklist = JSON.parse(response); //success server response
     
-    var data = this.validateRow(this.SpotChecklist);
+    var data = this.validateRow(this.Checklist);
 
 
      // SQA,SEPG,PM
