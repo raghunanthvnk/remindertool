@@ -21,8 +21,16 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "@types/xlsx": "0.0.35",
     "core-js": "^2.4.1",
+    "css-loader": "^0.28.7",
+    "file-saver": "^1.3.3",
+    "ng2-file-upload": "^1.2.1",
+    "ng2-file-uploader": "^0.1.4",
     "rxjs": "^5.4.2",
+    "ts-xlsx": "0.0.11",
+    "wijmo": "0.0.1-security",
+    "xlsx": "^0.11.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
