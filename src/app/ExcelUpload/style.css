@@ -195,3 +195,128 @@
       border: 1px solid transparent;
       border-radius: 4px;
     } */
+
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,600italic,700,800,800italic,700italic);
+    
+    *{ margin:0px; padding:0px;font-family: 'Open Sans', sans-serif; font-weight:400; }
+    body {
+      margin: 0px;
+      background:#e7e7e7;
+      font-family: 'Open Sans', sans-serif;
+      height: 100%; 
+      box-sizing:border-box;
+    }
+    html, body{ margin: 0; height: 100%; }
+    a:focus,input,input:focus,input:active {outline: none;outline-offset: 0;}
+    a:focus, a:hover {text-decoration: none;}
+     
+    
+    .promo-section {
+      height: 100%;
+      background: url(../images/landing.jpg) no-repeat center/cover;
+      position: fixed;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      overflow-x:hidden;
+      overflow-y:auto;
+    }
+    .promo-table {
+      display:table;
+      width:90%;
+      height:100%;
+      margin:0 auto;
+      
+    }
+    .promo-cell {
+       display:table-cell;
+       text-align:center;
+       vertical-align:middle;
+       padding:30px 0px 25px;
+    }
+    
+    .promo-section { 
+       text-align:center;
+    
+    }
+    
+    .land-item { position:relative; background-position:0 0; background-repeat:no-repeat; background-size:101%;
+          width:100%; min-height:230px; padding-top:62%; margin:0px 0 10px; display:inline-block; float:left; text-align:left;
+        -webkit-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out; 
+        overflow:hidden;
+    }
+    
+    .over-item { position:absolute; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,.9); text-align:right; padding:15px 10px; opacity:0; -webkit-transition:all .15s ease-in-out;-o-transition:all .15s ease-in-out;transition:all .15s ease-in-out; }
+    
+    .land-item h3 { position:absolute; left:0; bottom:0; width:100%; margin:0; padding:10px 15px; color:#fff; font-size:20px; font-weight:700; text-transform: uppercase;  }
+    
+    .land-item:before {
+      content:'';
+      position:absolute; left:0; top:0; width:100%; height:100%;
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 100%);  
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 100%);
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+    
+    }
+     .promo-section:before {
+      content:'';
+      position:absolute; left:0; top:0; width:100%; height:100%;
+      background:rgba(225,225,225,.2); 
+    }
+    .over-item ul { margin:0; padding:0; list-style:none;  }
+    .over-item li a { margin:0; padding:4px 10px; display:inline-block; font-weight:600; color:#FFF; text-transform: uppercase;  }
+    .land-item:hover .over-item { opacity:1;}
+    .land-item:hover { background-size:110%; }
+    .over-item li a:hover,.over-item li a:focus { color: #1F81FF; }
+    
+    
+    /*****/
+    
+    .defult-section .land-item:before {
+      content:'';
+      display:none;
+    }
+    
+    .defult-section .land-item {
+      background:#fff;
+    }
+    .defult-section .land-item h3 {
+      color:#555;
+      position: relative;
+      font-size:15px;
+      text-align:center;
+      padding-top:20px;
+      display:block;
+    }
+    .defult-section .land-item .fa {
+      position: absolute;
+      font-size:90px;
+      left:0; right:0;
+      top:0;
+      bottom:0;
+      margin:auto;
+      text-align:center;
+      padding-top:25%;
+    }
+    .defult-section .over-item { text-align:left; }
+    .defult-section .over-item ul { margin:0 0 0 24px; list-style:square; color:#000; }
+    .defult-section .over-item ul a { padding:4px 0; color:#000; }
+    .defult-section .over-item { background: rgba(255,255,255,.9); }
+    .defult-section .over-item li a:hover{ color:#06C; }
+    
+    .defult-section .land-item .fa-car { color:#00c0ef; }
+    .defult-section .land-item .fa-shopping-cart { color:#00a65a; }
+    .defult-section .land-item .fa-heartbeat { color:#dd4b39; }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

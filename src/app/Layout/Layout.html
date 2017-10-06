@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="./css/footer.css"> -->
 
 
-<div style="padding-bottom:44px;"> 
+<div style="padding-bottom:44px;"  > 
 <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -19,9 +19,9 @@
              <div class="collapse navbar-collapse" style="float: right;"
                        [ngClass]="{ 'in': isIn }"> 
                 <ul class="nav navbar-nav" >
-                    <li><a [routerLink] = "['/ExcelUpload']">Excel Upload</a></li>
-                    <li><a [routerLink] = "['/ExcelDownalod']">Excel Downalod</a></li>
-                    <li><a [routerLink] = "['/SPOTCHECK']">SPOT CHECK</a></li>
+                    <li><a [routerLink] = "['/ExcelUpload']" routerLinkActive="active" >Excel Upload</a></li>
+                    <li><a [routerLink] = "['/ExcelDownalod']" routerLinkActive="active"  >Excel Downalod</a></li>
+                    <li><a [routerLink] = "['/SPOTCHECK']" routerLinkActive="active" >SPOT CHECK</a></li>
                     
                     <li><a>SEPG</a></li>
                 </ul>

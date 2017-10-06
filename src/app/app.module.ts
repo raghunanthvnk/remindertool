@@ -4,7 +4,7 @@ import { CommonModule }    from '@angular/common';
 //In order to be able to use two-way data binding for form inputs you need to import theFormsModule package in your Angular module
 import { FormsModule, FormGroup,FormControl,Validators,FormBuilder,ReactiveFormsModule } from '@angular/forms'; 
 // for http req and res we use below module
-import { HttpModule } from '@angular/http';
+import { HttpModule,BaseRequestOptions } from '@angular/http';
  // datepicker package inherited from https://github.com/kekeh/mydatepicker  for functioning of datepicker
  //and register in system.js file and app.module file
 //  import { MyDatePickerModule } from 'mydatepicker';
@@ -20,15 +20,30 @@ import {PageNotFoundComponent} from './others/PageNotFoundComponent';
 import {  Component } from '@angular/core';
 // import {UPLOAD_DIRECTIVES} from 'ng2-file-uploader/ng2-file-uploader';
 
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+// import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { ModuleSelectorComponent } from './module-selector/module-selector.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
+//Login ref:  http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AlertService } from './services/alert.service';
+import { UserService } from './services/user.service';
 
 
 const appRoutes: Routes = [
-  { path: 'SPOTCHECK', component: SpotCheckStatusComponent },
+  { path: 'SPOTCHECK', component: SpotCheckStatusComponent,canActivate: [AuthGuardService] },
   { path: 'ExcelDownalod', component: ExcelDownloadComponent },
   { path: 'ExcelUpload', component: ExcelUploadComponent },
+  
+  { path: 'QualityLayout', component: LayoutComponent },
+
+  { path: 'ModuleSelector', component: ModuleSelectorComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', component:ModuleSelectorComponent ,canActivate: [AuthGuardService]},
   { path: '**', component: PageNotFoundComponent } 
 ];
 
@@ -36,11 +51,17 @@ const appRoutes: Routes = [
 @NgModule({
   declarations:[ AppComponent,SpotCheckStatusComponent,PageNotFoundComponent,LayoutComponent,
     ExcelDownloadComponent,ExcelUploadComponent,ExcelDownloadComponent
-    ,FileDropDirective, FileSelectDirective ],
-  imports:    [ BrowserModule , FormsModule,HttpModule,ReactiveFormsModule,
+    , ModuleSelectorComponent, LoginComponent, RegisterComponent ],
+  imports:    [ BrowserModule ,FileUploadModule, FormsModule,HttpModule,ReactiveFormsModule,
     RouterModule.forRoot(appRoutes) ],
-  providers: [],
-  bootstrap: [LayoutComponent]
+  providers: [
+    AuthGuardService,
+    AlertService,
+    AuthenticationService,
+    UserService,
+    BaseRequestOptions],
+  bootstrap: [AppComponent],
+  exports:[RouterModule]
   
 
 })

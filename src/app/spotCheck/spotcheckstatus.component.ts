@@ -9,8 +9,9 @@ import { projectFields } from '../models/projectFields';
 
 
 
+
 @Component({
-  selector: 'my-app',
+  selector: 'sport-app',
   styleUrls:['../css/home.css'],
   templateUrl:'./SpotCheckStatus.html',
   providers:[HttpService]
@@ -39,13 +40,15 @@ export class SpotCheckStatusComponent  implements OnInit
   // Initialized to specific date (09.10.2018).
    public model: Object = { date: { year: 2018, month: 10, day: 9 } };
 
-  constructor(private httpService: HttpService ) {
+  constructor(private httpService: HttpService ,) {
     this.projectFieldsdtl = {};
     this.SCDetails={};
   }
 
   ngOnInit(){
    
+  
+
   this.httpService.getServiceLinedtl().subscribe(
                     response=> {
                       this.serviceList=response[1];
@@ -205,6 +208,8 @@ export class SpotCheckStatusComponent  implements OnInit
           this.divhide=false
           this.SuccessMessage="Data "+this.btnSubmitText+ " Successfully";
           this.SCDetails='';
+
+          
 
           },
         error=> {

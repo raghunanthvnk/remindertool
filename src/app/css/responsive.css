@@ -1,320 +1,36 @@
-.right-col {
-    margin-top: 10px;
-    float: right;
-}
 
-.search-group {
-    width: 50%;
-}
-
-.filterOptions {
-    width: 50%;
-}
-
-.SumoSelect > .CaptionCont {
-    width: 100%;
-}
-
-.filterOptions > .SumoSelect {
-    width: 97%;
-    margin-right: 3%;
-}
-
-
-
-@media (min-width:640px) {
-
-    .grid-list > li {
-        float: left;
-        margin: 25px .5% 0;
-        width: 49%;
+ 
+@media (min-width:768px){
+    
+    .promo-table {
+     width:700px;
+     
     }
-
-    .modal-gridlist .grid-list > li {
-        float: left;
-        margin: 15px .5% 0;
-        width: 49%;
-    }
-}
-
-@media (min-width:768px) {
-    .search-modal-communication .modal-dialog {
-    width: 750px;
-}
-     .search-modal-communication1 .modal-dialog {
-    width: 750px;
-}
-}
-
-@media (min-width:992px) {
-   .search-modal-communication .modal-dialog {
-    width: 800px;
-}
-    .search-modal-communication1 .modal-dialog {
-    width: 1080px;
-}
-    .grid-list > li {
-        width: 32.3333%;
-    }
-
-    .modal-gridlist .grid-list > li {
-        width: 32.3333%;
-    }
-}
-
-@media (min-width:1200px) {
-    .wiz-container {
-        width: 920px;
-    }
-
-    .stepDesc small {
-        font-size: 11px;
-    }
-
-    .search-group {
-        width: 350px;
-    }
-
-    .SumoSelect {
-        width: 270px;
-    }
-
-    .addtouchpoint, .grid-group {
-        margin-top: 0;
-    }
-
-    .grid-list > li {
-        width: 24%;
-    }
-
-    .right-col {
-        margin-top: 0px;
-    }
-}
-
-
-
-
-
-
-@media (max-width:1200px) {
-
-    .mobile-responsive {
-        min-height: .01%;
-        overflow-x: auto;
-        width: 100%;
-        margin-bottom: 15px;
-        overflow-y: hidden;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        border: 1px solid #ddd;
-    }
-
-    .sparkline {
-        border-right: 0;
-        float: none;
-        margin-right: 0;
-        padding: 10px 0px 0 5px;
-    }
-
-    .stats_box .stat_text {
-        text-align: center;
-        float: none;
-        padding: 10px 0px;
-        min-width: inherit;
-    }
-
-    .manage-tab > li > a {
-        font-size: 12px;
-        min-width: 110px;
-        font-weight:600;
-    }
-    .coupontag {
-        width: 32.333%;
-        margin: 0 .5% 8px;
-        float:left;
-    }
-
-}
-
-@media (max-width:1023px) {
-    .manage-tab, .manage-tab-content {
-        display:inline-block;
-        width:100%;
-    }
-    .manage-tab {
-     padding-top:20px;
-     margin-bottom:10px;
-    }
-        .manage-tab > li {
-            width:25%;
-            text-align:center;
-        }
- .coupontag {
-        width: 49%;
-        margin: 0 .5% 8px;
-    }
-
-
-
-}
-
-@media (max-width:767px) {
-
-    .navbar-nav .open .dropdown-menu {
-        min-width: 220px;
-    }
-
-    .lang-links {
-        margin-top: 15px;
-    }
-    .tableListTd td {
-        min-width:150px;
-    }
-    .tab-nav .nav-tabs > li > a {
-        font-size:12px;
-    }
-        .is_stuck
-        {
-            position: fixed;
-            top: 0px;
-            width: 96%!important;
-        }
-          #stickySidebar-2
-        {
-            width:100% !important
-        }
-         #stickySidebar-1
-        {
-                width:100% !important
-        }
-
-    .listtag {
-        float: left;
-        width: 19%;
-        margin:1px .5%;
-        height:70px;
-    }
-
-    .aside-imglist {
-    max-height:140px;
-}
-
-}
-
-@media (max-width:640px) {
-
-    li a .stepDesc {
-        display: none;
-    }
-
-    .wiz-container ul li a {
-        position: relative;
-    }
-
-        .wiz-container ul li a:hover .stepDesc {
-            display: block;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 10;
-            border: 1px solid #ccc;
-            background: #fff;
-            padding: 10px 5px;
-        }
-
-    .stats_box li {
-        width: 49%;
-        margin: 0 .5% 10px;
-    }
-    .tab-nav .nav-tabs > li > a {
-        font-size:11px;
-        padding:10px;
-    }
-    .coupontag {
-        width: 100%;
-        margin: 0 0 8px;
-    }
-        .is_stuck
-        {
-            position: fixed;
-            top: 0px;
-            width: 94%!important;
-        }
-          #stickySidebar-2
-        {
-            width:100% !important
-        }
-         #stickySidebar-1
-        {
-                width:100% !important
-        }
-
-}
-
-
-@media (max-width:479px) {
-    .search-group {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .filterOptions {
-        width: 100%;
-    }
-
-    .SumoSelect > .CaptionCont {
-        width: 100%;
-    }
-
-    .filterOptions > .SumoSelect {
-        width: 100%;
-        margin-right: 0 %;
-    }
-    .manage-tab > li {
-            width:50%;
-            text-align:center;
-            border:1px solid #ddd;
-        }
-        .manage-tab > li > a {
-            font-size:14px;
-            border:0;
-            font-weight:600;
-        }
-    .tab-nav .nav-tabs > li > a {
-        font-size:12px;
-        text-align:center;
-        margin:0;
-    }
-    .tab-nav .nav-tabs > li {
-        width:50%; margin:0;
-        border:1px solid #ddd;
-    }
-        .tab-nav .nav-tabs > li.active > a:after {
-            display:none;
-        }
-        .is_stuck
-        {
-            position: fixed;
-            top: 0px;
-            width: 94%!important;
-        }
-        #stickySidebar-2
-        {
-            width:100% !important
-        }
-         #stickySidebar-1
-        {
-                width:100% !important
-        }
-
-             .listtag {
-        float: left;
-        width: 19%;
-        margin:1px .5%;
-        height:40px;
-    }
-
-    .aside-imglist {
-    max-height:90px;
-}
-}
+   .land-item { 
+         width:228PX; height:230px; margin:2px; display:inline-block; float:left; padding:0; 
+   }
+   .promo-cell { padding:0; }	
+   }
+   @media (min-width:992px){
+       
+   
+    
+   }
+   
+   @media (min-width:1200px){
+   .container{ width:870px;} 
+        
+       
+   }
+   
+   
+   
+   
+   
+   @media (max-width:479px){
+       
+        .land-item { padding:0; background-size:130%; }
+        .land-item:hover { background-size:140%; }
+        .over-item li a { font-size:13px; }
+       
+   }
