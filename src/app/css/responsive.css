@@ -1,0 +1,36 @@
+
+ 
+@media (min-width:768px){
+    
+    .promo-table {
+     width:700px;
+     
+    }
+   .land-item { 
+         width:228PX; height:230px; margin:2px; display:inline-block; float:left; padding:0; 
+   }
+   .promo-cell { padding:0; }	
+   }
+   @media (min-width:992px){
+       
+   
+    
+   }
+   
+   @media (min-width:1200px){
+   .container{ width:870px;} 
+        
+       
+   }
+   
+   
+   
+   
+   
+   @media (max-width:479px){
+       
+        .land-item { padding:0; background-size:130%; }
+        .land-item:hover { background-size:140%; }
+        .over-item li a { font-size:13px; }
+       
+   }

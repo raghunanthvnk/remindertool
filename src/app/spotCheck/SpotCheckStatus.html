@@ -1,0 +1,261 @@
+<!--
+    Form validation resource
+    https://medium.com/codingthesmartway-com-blog/angular-2-forms-tutorial-validation-efcd6756025b -->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/home.css"> -->
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head >
+    <title >SEPG CORE TEAM</title>
+</head>
+<body  >
+    <!-- <layout-app></layout-app> -->
+    <form #spotcheck="ngForm" class="container" >
+            <div style="text-align: left;" id="spotcheck">
+                    <div style="clear:both;padding-top:15px"></div>
+                    <div class="row formsteps myprofile" style="border:1px solid black;">
+                     
+                            <div style="clear:both;padding-top:15px"></div>
+                            <h4 class="text-center">SPOT CHECK STATUS</h4>
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Service Line:</label>
+                                    <select ID="ddlServiceLine"class="form-control" (change)="filterChanged($event.target.value)">
+                                            <option value="0">--Select--</option>  
+                                            <option *ngFor="let lang of serviceList"  
+                                                    value={{lang.SERVICE_LINE}}>  
+                                                {{lang.SERVICE_LINE}}  
+                                            </option>  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                    <div class="col-sm-6 form-group">
+                                        <label class="control-label">Project Code:</label>
+                                        <select ID="ddlProjCode"class="form-control" (change)="projectCodeChanged($event.target.value)"  >
+                                                <option value="0">--Select--</option>  
+                                                <option *ngFor="let lang of projectFields"  
+                                                        value={{lang.PROJECT_CODE}}>  
+                                                    {{lang.Project_Code_Project_Name}}  
+                                                </option>  
+                                        </select>
+                                       
+                                    </div>
+                                    <div class="col-sm-6 form-group" *ngIf="projectFieldsdtl != null && projectFieldsdtl != undefined">
+                                        <label class="control-label">Project Name:</label>
+                                        <input type="text" class="form-control" id="txtProjName" [(ngModel)]="projectFieldsdtl.PROJECT_NAME" name="txtProjName" >
+                                    </div>
+                                </div>
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Project Manager Name:</label>
+                                    <input type="text" class="form-control" id="txtProjManager" name="txtProjManager" [(ngModel)]="projectFieldsdtl.PROJECT_MANAGER" >
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Project Manager Email ID:</label>
+                                    <input type="text" class="form-control" id="txtProjManagerMailID" name="txtProjManagerMailID" [(ngModel)]="projectFieldsdtl.PROJECT_MANAGER_EMAIL_ID" >
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Sr.Project Manager Name:</label>
+                                    <input type="text" class="form-control" id="txtSrProjManager" name="txtSrProjManager" [(ngModel)]="projectFieldsdtl.SENIOR_PROJECT_MANAGER" >
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Sr.Project Manager Email ID:</label>
+                                    <input type="text" class="form-control" id="txtSrProjManagerMailID"   name="txtSrProjManagerMailID"  [(ngModel)]="projectFieldsdtl.SENIOR_PROJECT_MANAGER_EMAIL_ID" >
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">SL Head:</label>
+                                    <input type="text" class="form-control" id="txtSlHead" name="txtSlHead"  [(ngModel)]="projectFieldsdtl.SL_HEAD">
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">SL Head Email ID:</label>
+                                    <input type="text" class="form-control" id="txtSlHeadMailID" name="txtSlHeadMailID"   [(ngModel)]="projectFieldsdtl.SL_HEAD_EMAIL_ID" >
+                                </div>
+                            </div>
+                     
+                    </div>
+
+                     <div style="clear:both;padding-top:15px"></div>
+                    <div class="row formsteps myprofile" style="border:1px solid black;">
+                        
+                            <div style="clear:both;padding-top:15px"></div>
+                            <h4 class="text-center">SPOT CHECK DETAILS</h4>
+                            <div class="col-md-12">
+                                    <div class="radio col-sm-6 form-group">
+                                            <label>
+                                                <input type="radio" id="Add SpotCheck Details" name="optradio" value="ADD" (click)="radiobtnopted($event.target.value)">
+                                                Add SpotCheck Details
+                                            </label>
+                                    </div>
+                                    <div class="radio col-sm-6 form-group">
+                                            <label>
+                                                <input type="radio" id="Update SpotCheck Details" name="optradio" value="UPDATE"  (click)="radiobtnopted($event.target.value)">
+                                                Update SpotCheck Details
+                                            </label>
+                                    </div>
+                            </div>
+                          
+                            <div class="col-md-12">
+                                    <div class="col-sm-6 form-group">
+                                        <label class="control-label">Activity Name:</label>
+                                        <select  name="ddlActivityName"  ID="ddlActivityName"class="form-control" (change)="ddlActivityNamesChanged($event.target.value)"  >
+                                                <option value="0">--Select Activity Name--</option>  
+                                                <option *ngFor="let lang of ActivityNames"  
+                                                        value={{lang.ACTIVITY_NAME}}>  
+                                                    {{lang.ACTIVITY_NAME}}  
+                                                </option>  
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                            <label class="control-label">Activity Date:</label>
+                                            <select ID="ddlSubActivity"class="form-control" (change)="ddlSubActivityChanged($event.target.value)" >
+                                                    <option value="0">--Select Activity Date--</option>  
+                                                    <option *ngFor="let lang of SubActivityDates"  
+                                                            value={{lang.ACTIVITY_ID}}>  
+                                                        {{lang.EXPECTED_CLOSURE_DATE}}  
+                                                    </option>  
+                                            </select>
+                                    </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Expected Closure Date:</label>
+                                    <!-- <my-date-picker name="ExpectedDate"  id="txtExpectedDate"  [(ngModel)]="model"  [options]="myDatePickerOptions"
+                                     required></my-date-picker>   -->
+                                     <input   #ExpectedDate="ngModel"  required   type="date" id="ExpectedDate" name="ExpectedDate" [(ngModel)]="SCDetails.EXPECTED_CLOSURE_DATE" class="form-control" />                                  
+                                        <div *ngIf="ExpectedDate.errors && (ExpectedDate.dirty || ExpectedDate.touched)" class="alert alert-danger">
+                                            <div [hidden]="!ExpectedDate.errors.required">
+                                                Field required!
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Actual Closure Date:</label>
+                                    <!-- <my-date-picker name="ActualDate"  [(ngModel)]="SCDetails.ACTUAL_CLOSURE_DATE"  id="txtActualDate" [options]="myDatePickerOptions"
+                                    required></my-date-picker>  -->
+                                    <input  #ActualDate="ngModel"  required    type="date" id="ActualDate" name="ActualDate" [(ngModel)]="SCDetails.ACTUAL_CLOSURE_DATE" class="form-control" />                                  
+                                    <div *ngIf="ActualDate.errors && (ActualDate.dirty || ActualDate.touched)" class="alert alert-danger">
+                                        <div [hidden]="!ActualDate.errors.required">
+                                            Field required!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Theme:</label>
+                                    <input  type="text" class="form-control" id="txtTheme"  name="txtTheme"  [(ngModel)]="SCDetails.THEME" >
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Result:</label>
+                                    <select  ID="ddlPassFail" class="form-control" name="ddlPassFail" [(ngModel)]="SCDetails.PASSFAIL">
+                                            <option>Select P/F</option>
+                                            <option>Pass</option>
+                                            <option>Fail</option> 
+                                            </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12">
+                                <div class="col-sm-6 form-group">
+                                    <label class="control-label">Responsible:</label>
+                                    <input #txtResponsible="ngModel"  required minlength="5" maxlength="30"   type="text" class="form-control" id="txtResponsible" name="txtResponsible" [(ngModel)]="SCDetails.RESPONSIBLE">
+                                    <div *ngIf="txtResponsible.errors && (txtResponsible.dirty || txtResponsible.touched)" class="alert alert-danger">
+                                        <div [hidden]="!txtResponsible.errors.required">
+                                            Field required!
+                                        </div>
+                                        <div [hidden]="!txtResponsible.errors.minlength">
+                                            Field must be at least 5 characters long.
+                                        </div>
+                                        <div [hidden]="!txtResponsible.errors.maxlength">
+                                            Field cannot be more than 30 characters long.
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <div class="col-sm-6 form-group required">
+                                    <label class="control-label">Responsible Person Email ID:</label>
+                                    <input  #txtResponsibleEmailId="ngModel" required
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                    type="email" class="form-control" id="txtResponsibleEmailId" name="txtResponsibleEmailId"  [(ngModel)]="SCDetails.RESPONSIBLE_PERSON_EMAIL_ID">
+                                    <div *ngIf="txtResponsibleEmailId.errors && (txtResponsibleEmailId.dirty || txtResponsibleEmailId.touched)" class="alert alert-danger">
+                                        <div [hidden]="!txtResponsibleEmailId.errors.required">
+                                            Field required!
+                                        </div>
+                                        <div  *ngIf="txtResponsibleEmailId.errors && txtResponsibleEmailId.errors.pattern">
+                                            Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                    <div class="col-sm-6 form-group">
+                                        <label class="control-label">Responsible Person NTID:</label>
+                                        <input   type="text" class="form-control" id="txtNTID"  name="txtNTID" [(ngModel)]="SCDetails.NTID" >
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label class="control-label">CITS_Quality Email ID:</label>
+                                        <input    type="email" #txtQualityEmailId="ngModel"  required
+                                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control" id="txtQualityEmailId" name="txtQualityEmailId"  [(ngModel)]="SCDetails.MITS_QUALITY_EMAIL_ID">
+                                        <div *ngIf="txtQualityEmailId.errors && (txtQualityEmailId.dirty || txtQualityEmailId.touched)" class="alert alert-danger">
+                                            <div [hidden]="!txtQualityEmailId.errors.required">
+                                                Field required!
+                                            </div>
+                                            <div  *ngIf="txtQualityEmailId.errors && txtQualityEmailId.errors.pattern">
+                                                Email is invalid
+                                            </div>
+                                        </div>
+                                   
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                        <div class="col-sm-6 form-group">
+                                            <label class="control-label">Status:</label>
+                                            <select ID="ddlStatus" name="ddlStatus"  [(ngModel)]="SCDetails.STATUS"  class="form-control">
+                                                    <option>Select Status</option>
+                                                    <option>Pending</option>
+                                                    <option>Closed</option>
+                                                    </select>
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <label class="control-label">Reminder Active:</label>
+                                            
+                                            <input class="checkbox" type="checkbox" ID="chkReminderActive" name="chkReminderActive"  [(ngModel)]="SCDetails.REMINDER_ACTIVE" Enabled="false" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                            <div class="col-sm-6 form-group">
+                                                <label class="control-label">Comments:</label>
+                                                <textarea class="form-control" rows="5" id="txtComments" name="txtComments" [(ngModel)]="SCDetails.COMMENTS"></textarea>
+                                            </div>
+                                     </div>
+                                     <div class="col-md-12">
+                                            <div class="col-sm-6 form-group">
+                                                    <button type="button" ID="btnSubmit" [disabled]="!spotcheck.form.valid"  (click)="btnSubmit()"  class="btn btn-primary">{{btnSubmitText}}</button>
+                                                    <button type="button" ID="btnReset" class="btn btn-primary">Reset</button>
+                                            </div>
+                                            <!-- <div class="alert alert-success col-sm-6 form-group " >
+                                                <strong>Success!</strong> {{SuccessMessage}}
+                                              </div> -->
+                                             <div  class="alert alert-success fade in col-sm-6 " [class.divhide]='divhide'> 
+                                                    <strong>{{SuccessMessage}}</strong> 
+                                            </div>
+                                     </div>
+                                   
+                         
+                    </div>
+                </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head >
+    <title>QualityExcelDownload</title>
+</head>
+<body>
+    <form id="form1" class="container">
+    <div>
+        <div class="col-md-12 text-center">
+      
+                <h3 >Quality - Excel Download</h3>
+            
+                <Label ForeColor="red" ID="lblErrorMessage" ></Label>
+           
+      </div>
+
+      <div class="col-md-12" style="padding-bottom: 70px;">
+            <div class="col-md-3">
+            <button type="button" class="btn btn-info" (click)="GetRemindersData('ALL_PMD_RECORDS')" ID="cmdPMDDownload">
+                     PM or Delivery Data
+                    <span class="fa fa-download fa-lg"  aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-md-3">
+            <button type="button" class="btn btn-info" (click)="GetRemindersData('ALL_SEPG_RECORDS')" ID="cmdSEPGDownload">
+                     SEPG Data
+                    <span class="fa fa-download fa-lg"  aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class=" col-md-3">
+            <button type="button" class="btn btn-info" (click)="GetRemindersData('ALL_SQA_RECORDS')" ID="cmdSQADownload">
+                     SQA Data
+                    <span class="fa fa-download fa-lg"  aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-md-3">
+    
+            <button type="button" class="btn btn-info " (click)="GetRemindersData('ALL_SPOTCHECK_RECORDS')"   ID="cmdSpotCheckDownload">
+                     Spot Check Data
+                    <span class="fa fa-download fa-lg"  aria-hidden="true"></span>
+                </button> 
+            </div>       
+         </div>
+         <div class="clear"> </div>
+         <div class="col-md-12" style="border:1px solid black">
+             <h4>Instructions to the user:</h4>
+                <ul>
+                <li>This is a single user application</li>
+                <li>Steps to first time PO upload:</li>
+                <ol>
+                    <li>Download Excel template from the 'Download Excel Template' link</li>
+                    <li>Fill in excel template with data</li>
+                    <li>Upload filled in excel document to the system</li>
+                    <li>Application will update the results in the last 3 columns of the exccel and will download to the user</li>
+                    <li>Verify upload results in the last 3 columns of the downloaded excel</li>
+                    <li>On successful transactions 'DATABASE_MESSAGE' column will show 'UPDATED_SUCCESSFULLY' or 'INSERTED_SUCCESSFULLY'</li>
+                    <li>'VALIDATION_RESULT' column shows validation errors for the failed documents</li>
+                </ol>
+                <li>Steps to update existing Documents: Example: To update Document received</li>
+                <ol>
+                    <li>Using 'Download All Documnets' button - download excel</li>
+                    <li>From the downloaded excel - Copy the Document Number row to be modified</li>
+                    <li>Download Document template from the 'Download Excel Template' link</li>
+                    <li>Paste the copied row in the template</li>
+                    <li>Upload filled in excel document to the system</li>
+                    <li>Verify upload results in the last 3 columns of the downloaded excel</li>
+                    <li>On successful transactions 'DATABASE_MESSAGE' column will show 'UPDATED_SUCCESSFULLY' or 'INSERTED_SUCCESSFULLY'</li>
+                    <li>'VALIDATION_RESULT' column shows validation errors for the failed documents</li>
+                </ol>
+                <li>When the Document 'RECIEVED_DATE' column is updated - Application automatically sends received emails</li>
+                </ul>
+            </div>
+    </div>
+    </form>
+</body>
+</html>
