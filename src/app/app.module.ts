@@ -46,15 +46,17 @@ const appRoutes: Routes = [
   {
     path: 'qualitydashboard',
     loadChildren: 'app/quality.module#QualityModule',
+    canActivate: [AuthGuardService]
   },
 
   {
     path: 'sepgdashboard',
     loadChildren: 'app/sepgcoreTeamModule/sepgcore-team.module#SepgcoreTeamModule',
+    canActivate: [AuthGuardService]
   },
 
 
-  { path: 'ModuleSelector', component: ModuleSelectorComponent },
+  { path: 'ModuleSelector', component: ModuleSelectorComponent,canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', component:ModuleSelectorComponent ,canActivate: [AuthGuardService]},
