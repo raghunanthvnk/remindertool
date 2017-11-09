@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule }    from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 //In order to be able to use two-way data binding for form inputs you need to import theFormsModule package in your Angular module
 import { FormsModule, FormGroup,FormControl,Validators,FormBuilder,ReactiveFormsModule } from '@angular/forms'; 
 // for http req and res we use below module
@@ -29,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
 //Login ref:  http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthenticationService } from './services/authentication.service';
+import { WinAuthInterceptorService } from './services/win-auth-interceptor.service';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 
@@ -70,11 +72,14 @@ const appRoutes: Routes = [
   imports:    [ BrowserModule ,FileUploadModule, FormsModule,HttpModule,ReactiveFormsModule,
     RouterModule.forRoot(appRoutes) ],
   providers: [
+    WinAuthInterceptorService,
     AuthGuardService,
     AlertService,
     AuthenticationService,
     UserService,
-    BaseRequestOptions],
+    BaseRequestOptions,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent],
   exports:[RouterModule]
   
