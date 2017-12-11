@@ -11,6 +11,8 @@ import { serviceLine } from '../models/serviceLine';
 
 import {Observable} from 'rxjs/Rx';
 
+import { AppGlobalsService } from '../app-globals.service';
+
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,14 +21,16 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class HttpService {
 
-    private BASE_URL:string = 'http://localhost:5000/serviceline_dtl';
-    private projectcodedtl_URL:string = 'http://localhost:5000/project_codes_dtl?ServiceLine=';
-    private activityname_URL:string = 'http://localhost:5000/ActivityNames_Get';
+    
     
 
     constructor(
-	        private http: Http
-	) { }
+	        private http: Http, private _global: AppGlobalsService
+    ) { }
+    
+    private BASE_URL:string = this._global.baseAppUrl+'spotcheck/serviceline_dtl';
+    private projectcodedtl_URL:string = this._global.baseAppUrl+'spotcheck/project_codes_dtl?ServiceLine=';
+    private activityname_URL:string = this._global.baseAppUrl+'spotcheck/ActivityNames_Get';
 
 	public getServiceLinedtl(){
       
@@ -49,7 +53,7 @@ export class HttpService {
     }
     public getSubActivityDates(ActivityName:string,Project_code:string){
         
-        var subactivity_URL:string = 'http://localhost:5000/SUBACTIVITY_GET/?ActivityName='+ActivityName+'&Project_code='+Project_code;
+        var subactivity_URL:string = this._global.baseAppUrl+'spotcheck/SUBACTIVITY_GET/?ActivityName='+ActivityName+'&Project_code='+Project_code;
 
           return this.http.get(`${subactivity_URL}`)
               .map((res:Response) => res.json())
@@ -58,7 +62,7 @@ export class HttpService {
     
     public GetSpotCheckDetailsforProject(ActivityId:string){
         
-        var SCDetails_URL:string = 'http://localhost:5000/SpotCheckDetailsforProject_GET/?ActivityId='+ActivityId;
+        var SCDetails_URL:string = this._global.baseAppUrl+'spotcheck/SpotCheckDetailsforProject_GET/?ActivityId='+ActivityId;
 
           return this.http.get(`${SCDetails_URL}`)
               .map((res:Response) => res.json())
@@ -66,7 +70,7 @@ export class HttpService {
     }
     public AddSpotCheckDetails(mode:string,project_code:string,data:any,activity:any){
         
-        var AddSpotCheckDetails_URL:string = 'http://localhost:5000/api/UpdateSpotCheckDetails/?ProjectCode='+project_code+'&mode='+mode;
+        var AddSpotCheckDetails_URL:string = this._global.baseAppUrl+'spotcheck/UpdateSpotCheckDetails/?ProjectCode='+project_code+'&mode='+mode;
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify({spot_check_details: data, activity: activity});
@@ -79,14 +83,10 @@ export class HttpService {
 
     public GetRemindersData(Flag:string){
         
-        var GetRemindersData_URL:string = 'http://localhost:5000/api/RemindersData/?Flag='+Flag;
-
-        
+        var GetRemindersData_URL:string = this._global.baseAppUrl+'qmExcelDownload/RemindersData/?Flag='+Flag;
         return this.http.get(`${GetRemindersData_URL}`)
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-       
     }
 
 	public deleteUser(usersID:string){

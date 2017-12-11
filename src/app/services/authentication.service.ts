@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response,RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+
+import { AppGlobalsService } from '../app-globals.service';
 // import 'rxjs/add/operator/map'
 import 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http) { }
+    constructor(private http: Http, private _global: AppGlobalsService) { }
 
     login(username: string, password: string) {
-        console.log(username)
+       
 
-        var authenticate_url:string = 'http://localhost:5000/api/authenticate';
+        var authenticate_url:string =  this._global.baseAppUrl+'auth/authenticate';
             
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify({username: username, password: password});
@@ -23,11 +25,9 @@ export class AuthenticationService {
             // login successful if there's a jwt token in the response
             let user = response.json();
 
-         
-
-            if (user) {//   if (user && user.token) {
+              if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('currentUser', JSON.stringify(user.message));
             }
         })
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

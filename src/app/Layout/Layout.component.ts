@@ -39,7 +39,9 @@ export class LayoutComponent {
 
         if (localStorage.getItem('currentUser')) {
             // logged in so return true
-             this.session_user = JSON.parse(localStorage.getItem('currentUser'))[0][0];
+
+             
+             this.session_user = JSON.parse(localStorage.getItem('currentUser'));
              console.log(this.session_user);
            
         }

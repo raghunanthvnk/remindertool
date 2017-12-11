@@ -9,6 +9,7 @@ import { FileUploader ,FileItem,ParsedResponseHeaders,FileLikeObject} from 'ng2-
 
 import { SpotCheck } from '../models/SpotCheckFields';  
 
+import { AppGlobalsService } from '../app-globals.service';
 // import {ExcelDownloadComponent} from '../ExcelDownload/ExcelDownload.component'
 
 
@@ -29,14 +30,14 @@ export class ExcelUploadComponent  {
 
   uploader:FileUploader;
 
-  constructor(private uploadservice: UploadService ){
+  constructor(private uploadservice: UploadService ,private _global: AppGlobalsService){
     this.Checklist=[];
     this.project_master=[];
    
   }
   ngOnInit(): void {
       this.uploader = new FileUploader({
-          url: 'http://localhost:5000/upload',
+          url: this._global.baseAppUrl+'qmExcelUpload/upload',
           allowedFileType: ['xls','xlsx'],
           removeAfterUpload: false
           // headers: [{name:'Accept', value:'application/json'}],

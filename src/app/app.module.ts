@@ -38,6 +38,7 @@ import { QualityModule }    from './quality.module';
 import { PmoModule }    from './pmo module/pmo.module';
 import { SepgcoreTeamModule } from './sepgcoreTeamModule/sepgcore-team.module';
 
+import { AppGlobalsService } from './app-globals.service';
 
 const appRoutes: Routes = [
   // { path: 'SPOTCHECK', component: SpotCheckStatusComponent },
@@ -78,7 +79,9 @@ const appRoutes: Routes = [
     AuthenticationService,
     UserService,
     BaseRequestOptions,
-    HttpClientModule
+    HttpClientModule,
+    AppGlobalsService
+    
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]
