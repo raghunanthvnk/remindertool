@@ -25,7 +25,7 @@ export class PirComponent implements OnInit {
 
     this.pir_guid= this.route.snapshot.params['id'];
     console.log(this.pir_guid);
-    if(this.pir_guid)
+    if(this.pir_guid || this.pir_guid!=undefined)
     {
     this.fields_disabled=true;
     this.GetPIRDetailsById(this.pir_guid);
@@ -39,8 +39,8 @@ export class PirComponent implements OnInit {
   setDefaultVlaues(){
      //Initialize the default values
      var date= new Date();
-     this.PIRDetails.InitiatorDate=date.getFullYear()+'-'+("0" + (date.getMonth()+1)).slice(-2)+'-'+("0" + date.getDate()).slice(-2);
-     this.PIRDetails.Status=2;
+     this.PIRDetails.initiator_date=date.getFullYear()+'-'+("0" + (date.getMonth()+1)).slice(-2)+'-'+("0" + date.getDate()).slice(-2);
+     this.PIRDetails.status=2;
      var fields_disabled=false;
   }
   btnReset(){
@@ -55,8 +55,8 @@ export class PirComponent implements OnInit {
         //this.btnReset();
         console.log("VALUE RECEIVED: ",response);
         this.SuccessMessagehide=false;
-        this.SuccessMessage="PIR Data Submitted Successfully";
-        
+        this.SuccessMessage="PIR Data Submitted Successfully and response ID is "+response.pir_guid;
+        this.loading=false;
         },
       error=> {
           console.log("ERROR: ",error);

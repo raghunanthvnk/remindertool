@@ -33,11 +33,11 @@ export class UserService {
                 .map((res:Response) => res.json())
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-  public GetAllPIRHistory(pagesIndex:number,pageSize:number){
+  public GET_PIR_RECORDS_FORDT(pagesIndex:number,pageSize:number){
     
-    var GetAllPIRHistory_URL:string = this._global.baseAppUrl+'pir/GetAllPIRHistory?pagesIndex='+pagesIndex+'&pageSize='+pageSize;
+    var GET_PIR_RECORDS_FORDT_URL:string = this._global.baseAppUrl+'pir/GET_PIR_RECORDS_FORDT?pagesIndex='+pagesIndex+'&pageSize='+pageSize;
    
-    return this.http.get(`${GetAllPIRHistory_URL}`)
+    return this.http.get(`${GET_PIR_RECORDS_FORDT_URL}`)
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -49,7 +49,14 @@ export class UserService {
           .map((res:Response) => res.json())
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-
+  public GetAllPIRHistory(){
+    
+    var GET_PIR_RECORDS_FORDT_URL:string = this._global.baseAppUrl+'pir/GetAllPIRHistory';
+   
+    return this.http.get(`${GET_PIR_RECORDS_FORDT_URL}`)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
 
   

@@ -1,6 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {UserService} from '../../usersModule/user.service'
 import { Router ,ActivatedRoute} from '@angular/router';
+//npm install xlsx  --save ,  npm install file-saver --save 
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import 'rxjs/Rx' ;
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
+
 
 @Component({
   selector: 'app-pirhistory',
@@ -23,6 +30,7 @@ export class PirhistoryComponent implements OnInit {
   inputName       : string = '';
   totalPages      : number;
   totalrecords    : number;
+  downalodedfilename :string;
 
 
   constructor(private httpService:UserService,private _router:Router,private route: ActivatedRoute ) {
@@ -33,7 +41,7 @@ export class PirhistoryComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.GetPIRHistory(this.rowindex,this.pageSize);
+    this.GET_PIR_RECORDS_FORDT(this.rowindex,this.pageSize);
   }
   caluclateProperties()
   {
@@ -53,7 +61,7 @@ export class PirhistoryComponent implements OnInit {
     this.currentIndex=page;
     this.pageNumber=page;
     this.rowindex=(this.currentIndex-1)*this.pageSize
-    this.GetPIRHistory(this.rowindex,this.pageSize);
+    this.GET_PIR_RECORDS_FORDT(this.rowindex,this.pageSize);
   }
 
   nextPage()
@@ -61,22 +69,22 @@ export class PirhistoryComponent implements OnInit {
     this.currentIndex++;
     this.pageNumber++;
     this.rowindex=(this.currentIndex-1)*this.pageSize
-    this.GetPIRHistory(this.rowindex,this.pageSize);
+    this.GET_PIR_RECORDS_FORDT(this.rowindex,this.pageSize);
   }
   prevPage()
   {
     this.currentIndex--;
     this.pageNumber--;
     this.rowindex=(this.currentIndex-1)*this.pageSize
-    this.GetPIRHistory(this.rowindex,this.pageSize);
+    this.GET_PIR_RECORDS_FORDT(this.rowindex,this.pageSize);
   }
   // edit(item)
   // {
   //   console.log(item.pir_id);
   // }
-  GetPIRHistory(rowindex:number,pageSize:number)
+  GET_PIR_RECORDS_FORDT(rowindex:number,pageSize:number)
   {
-    this.httpService.GetAllPIRHistory(rowindex,pageSize).subscribe(
+    this.httpService.GET_PIR_RECORDS_FORDT(rowindex,pageSize).subscribe(
         response=> {
          
           console.log("VALUE RECEIVED: ",response[0]);
@@ -97,5 +105,42 @@ export class PirhistoryComponent implements OnInit {
         }
     );
   }
+  DownalodPIRData()
+    {
+      this.httpService.GetAllPIRHistory().subscribe(
+        response=> {
+          console.log("VALUE RECEIVED: ",response);
+            if(response.length>0)
+            {
+              console.log(response[1]);
+              var displayDate = new Date().toLocaleDateString();
+              this.downalodedfilename= "PIR Data "+displayDate
+              this.exportAsExcelFile(response[0],response[1], this.downalodedfilename)
+            }
+          },
+        error=> {
+            console.log("ERROR: ",error);
+            console.log(error.json()); //gives the object object
+        },
+        () => {
+            console.log("Completed");
+        }
+    );
+   }
+   public exportAsExcelFile(json: any[],json1: any[], excelFileName: string): void {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+    const worksheet1: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json1);
+    const workbook: XLSX.WorkBook = { Sheets: { 'PIR History': worksheet,'Aggregate  Counts': worksheet1 }, SheetNames: ['PIR History','Aggregate  Counts'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+   
   
 }
