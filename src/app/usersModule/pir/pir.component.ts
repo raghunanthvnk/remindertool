@@ -21,7 +21,6 @@ export class PirComponent implements OnInit {
   constructor(private httpService:UserService,private _router:Router,private route: ActivatedRoute ) {
     this.PIRDetails={};
    }
-
   ngOnInit() {
 
     this.pir_guid= this.route.snapshot.params['id'];

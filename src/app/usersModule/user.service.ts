@@ -41,7 +41,6 @@ export class UserService {
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-
   public GetPIRHistorybyID(pir_guid:any){
     
     var GetPIRHistorybyID_URL:string = this._global.baseAppUrl+'pir/GetPIRHistorybyID/?pir_guid='+pir_guid;
