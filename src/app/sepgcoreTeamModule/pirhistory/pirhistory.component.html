@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head >
+    <title >PIR History</title>
+</head>
+<body style="min-height:520px">
+    <form #pirhistoryform="ngForm" class="container">
+        <div style="clear:both;padding-top:45px"></div>
+        <!-- <div class="col-md-10 form-group">
+            <label class="control-label col-sm-1 col-form-label">Filter:</label>
+            <div class="col-sm-8 form-inline">
+                <input  type="text" class="form-control"  id="inputName" name="inputName" [(ngModel)]="inputName"/>
+                <input type="button" class="btn btn-primary" (click)="FilterByName()" value="Apply"/>
+           </div>
+        </div> -->
+        <div class="col-md-12 form-group">
+                      <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                         <div class='panel-heading'>PIR History</div>
+                          <div class='panel-body'>
+                              <div class="row" style="overflow: auto;width: 1110px;">
+                                  <div class="col-sm-12">
+                                      <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                          <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div>
+                                          <div class="row">
+                                              <div class="col-sm-12">
+                                                  <table id="example1" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="example1_info">
+                                                      <thead>
+                                                          <tr role="row">
+                                                              <th class="" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending">Initiator Name</th>
+                                                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Initiator Email Addresss</th>
+                                                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Initiator Date</th>
+                                                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Status</th>
+                                                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action </th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr role="row" class="even" *ngFor="let item of PIRData">
+                                                              <td ><label>{{item.initiator_name}}</label></td>
+                                                              <td><label>{{item.email_address}}</label></td>
+                                                              <td><label>{{item.initiator_date}}</label></td>
+                                                              <td><label>{{item.status_name}}</label></td>
+                                                              <td>
+                                                                  <div id="action_icons">
+                                                                      <a [routerLink]="['/userdashboard/USERLayout/PIR',item.pir_guid]" style="cursor: pointer" class="edit" title="Edit" id={{item.pir_guid}}  ><i class="fa fa-pencil"></i></a>
+                                                                      <a style="cursor: pointer" class="delete" title="Delete" id={{item.pir_id}}><i class="fa fa-trash-o"></i></a>
+                                                                  </div>
+                                                              </td>
+                                                          </tr>
+      
+                                                      </tbody>
+                                                  </table>
+                                              </div>
+                                          </div>
+
+                                          <div class="row">
+                                              <div class="col-sm-5">
+                                                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+                                                      <label style="margin-top:10px">Page Showing  : {{pageNumber}} of {{totalPages}}</label>
+                                                      <br/>
+                                                      <label style="margin-top:10px">Total Records : {{totalrecords}}</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-sm-7">
+                                                  <div class="btn-group pull-right">
+                                                      <ul class="pagination" >
+                                                         <li style="cursor: pointer" [ngClass]="{'disabled': (currentIndex == 1 || totalPages == 0)}" ><a  (click)="prevPage()">Prev</a></li>
+                                                            <li *ngFor="let page of pagesIndex" style="cursor: pointer" [ngClass]="{'active': (currentIndex == page)}">
+                                                               <a (click)="setPage(page)"  >{{page}}</a>
+                                                            </li>
+                                                         <li style="cursor: pointer" [ngClass]="{'disabled': (currentIndex == totalPages || totalPages == 0)}" ><a   (click)="nextPage()" >Next</a></li>
+                                                      </ul>
+                                                   </div>
+                                              </div>
+                                          </div>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+        </div>
+    </form>
+</body>

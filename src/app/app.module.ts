@@ -58,6 +58,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService]
   },
 
+  {
+    path: 'userdashboard',
+    loadChildren: 'app/usersModule/users.module#UsersModule'
+    //,canActivate: [AuthGuardService]
+  },
+
 
   { path: 'ModuleSelector', component: ModuleSelectorComponent,canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },

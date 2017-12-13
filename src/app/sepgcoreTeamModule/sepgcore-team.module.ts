@@ -12,13 +12,15 @@ import { HttpModule,BaseRequestOptions } from '@angular/http';
 import { SepgComponent } from './sepg.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { PirhistoryComponent } from './pirhistory/pirhistory.component';
 
 
 // in dashboard module
 const SEPGRoutes: Routes = [
   {path: '', component: SepglayoutComponent},
   {path: 'SEPGLayout', component: SepglayoutComponent,
-                       children:[{ path: 'SEPG', component: SepgComponent }]
+                       children:[{ path: 'SEPG', component: SepgComponent },
+                                {path:'PIRHistory',component:PirhistoryComponent}]
            
   }
 ];
@@ -30,7 +32,7 @@ export const SEPGRouting = RouterModule.forChild(SEPGRoutes);
   imports: [
     CommonModule,RouterModule.forChild(SEPGRoutes), FormsModule,HttpModule
   ],
-  declarations: [SepglayoutComponent,SepgComponent],
+  declarations: [SepglayoutComponent,SepgComponent, PirhistoryComponent],
   bootstrap:[SepglayoutComponent]
 })
 export class SepgcoreTeamModule { }
