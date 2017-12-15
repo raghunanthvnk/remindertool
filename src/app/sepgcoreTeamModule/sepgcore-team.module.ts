@@ -13,6 +13,8 @@ import { SepgComponent } from './sepg.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { PirhistoryComponent } from './pirhistory/pirhistory.component';
+import { PirmodificationComponent } from './pirmodification.component';
+
 
 
 // in dashboard module
@@ -20,7 +22,9 @@ const SEPGRoutes: Routes = [
   {path: '', component: SepglayoutComponent},
   {path: 'SEPGLayout', component: SepglayoutComponent,
                        children:[{ path: 'SEPG', component: SepgComponent },
-                                {path:'PIRHistory',component:PirhistoryComponent}]
+                                {path:'PIRHistory',component:PirhistoryComponent},
+                                {path:'PIRModification',component:PirmodificationComponent},
+                                {path:'PIRModification/:id',component:PirmodificationComponent}]
            
   }
 ];
@@ -32,7 +36,7 @@ export const SEPGRouting = RouterModule.forChild(SEPGRoutes);
   imports: [
     CommonModule,RouterModule.forChild(SEPGRoutes), FormsModule,HttpModule
   ],
-  declarations: [SepglayoutComponent,SepgComponent, PirhistoryComponent],
+  declarations: [SepglayoutComponent,SepgComponent, PirhistoryComponent, PirmodificationComponent],
   bootstrap:[SepglayoutComponent]
 })
 export class SepgcoreTeamModule { }

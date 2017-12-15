@@ -4,6 +4,7 @@
     <title >PIR History</title>
 </head>
 <body style="min-height:520px">
+     <div id="divBusyContent" [class.stopBusyConent]='stopBusyConent' ></div>
     <form #pirhistoryform="ngForm" class="container">
         <div style="clear:both;padding-top:45px"></div>
         <!-- <div class="col-md-10 form-group">
@@ -50,7 +51,7 @@
                                                               <td><label>{{item.status_name}}</label></td>
                                                               <td>
                                                                   <div id="action_icons">
-                                                                      <a [routerLink]="['/userdashboard/USERLayout/PIR',item.pir_guid]" style="cursor: pointer" class="edit" title="Edit" id={{item.pir_guid}}  ><i class="fa fa-pencil"></i></a>
+                                                                      <a [routerLink]="['/sepgdashboard/SEPGLayout/PIRModification',item.pir_guid]" style="cursor: pointer" class="edit" title="Edit" id={{item.pir_guid}}  ><i class="fa fa-pencil"></i></a>
                                                                       <a style="cursor: pointer" class="delete" title="Delete" id={{item.pir_id}}><i class="fa fa-trash-o"></i></a>
                                                                   </div>
                                                               </td>

@@ -43,4 +43,16 @@ export class LoginComponent implements OnInit {
                   this.loading = false;
               });
   }
+  Windowslogin() {
+    this.loading = true;
+    this.authenticationService.WindowsauthenticateUser()
+        .subscribe(
+            data => {
+                this.router.navigate([this.returnUrl]);
+            },
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
+            });
+}
 }

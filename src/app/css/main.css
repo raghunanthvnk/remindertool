@@ -36,6 +36,8 @@ a { color:#1c97da; }
 	overflow-y:auto;
 	position:relative;
 }
+
+
 .header { position:absolute; top:0; width:100%; z-index:10;   }
 .homebg { background:url(../Images/slider-1.jpg) no-repeat 0 0 / cover; position:relative; }
 .productsbg { background:url(../Images/productsbg.jpg) no-repeat 0 0 / cover; position:relative; }

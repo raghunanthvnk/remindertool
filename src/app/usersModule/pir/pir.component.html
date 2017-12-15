@@ -7,112 +7,132 @@
         <title >PIR Form</title>
     </head>
     <body>
+            <div id="divBusyContent" [class.stopBusyConent]='stopBusyConent' ></div>
         <!-- <layout-app></layout-app> -->
-        <form #pirform="ngForm" class="container" >
-            
+        <div style="clear:both;padding-top:45px"></div>
+        
+        <form #pirform="ngForm"  class="container" >
+                    <div class="col-md-12 form-inline">
+                        <label class="control-label">Update Your PIR By ID:</label>
+                            <input  type="text" class="form-control"  id="txtSearchbyID" name="txtSearchbyID" [(ngModel)]="SearchbyID"/>
+                            <button  type="button" ID="btnSubmit" class="btn btn-primary"  (click)="FilterByNameID()" >
+                                    Update   
+                                <img *ngIf="searchloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            </button>
+                            <label> 
+                                    <strong>{{searchMessage}}</strong> 
+                            </label>
+                    </div>
                 <div style="text-align: left;" id="pirform">
                         <div style="clear:both;padding-top:15px"></div>
-                        <div class="row formsteps myprofile" style="border:1px solid black;">
+                        <div  [class.pirformshow]='pirformshow' class="row formsteps myprofile" style="border:1px solid black;">
                          
                                 <div style="clear:both;padding-top:15px"></div>
                                 <h4 class="text-center">Process Improvement Request Form</h4>
                                 <div style="clear:both;padding-top:15px"></div>
-                                <div class="col-md-12 form-group">
-                                    <label class="control-label col-sm-3 col-form-label">Initiator Name:</label>
-                                    <div class="col-sm-9">
-                                      <input #txtInitiatorName="ngModel"  required minlength="5" maxlength="30"   type="text" class="form-control" id="txtInitiatorName" name="txtInitiatorName" [(ngModel)]="PIRDetails.initiator_name">
-                                      <div *ngIf="txtInitiatorName.errors && (txtInitiatorName.dirty || txtInitiatorName.touched)" class="alert alert-danger">
-                                          <div [hidden]="!txtInitiatorName.errors.required">
-                                              Field required!
-                                          </div>
-                                          <div [hidden]="!txtInitiatorName.errors.minlength">
-                                              Field must be at least 5 characters long.
-                                          </div>
-                                          <div [hidden]="!txtInitiatorName.errors.maxlength">
-                                              Field cannot be more than 30 characters long.
-                                          </div>
-                                      </div>
-                                   </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                      <label class="control-label col-sm-3 col-form-label">Initiator Date:</label>
-                                      <div class="col-sm-9">
-                                        <input   #InitiatorDate="ngModel"  required   type="date" id="InitiatorDate" name="InitiatorDate" [(ngModel)]="PIRDetails.initiator_date" class="form-control" [disabled]="!fields_disabled" />                                  
-                                        <div *ngIf="InitiatorDate.errors && (InitiatorDate.dirty || InitiatorDate.touched)" class="alert alert-danger">
-                                            <div [hidden]="!InitiatorDate.errors.required">
-                                                Field required!
-                                            </div>
+                                <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                                <label class="control-label">Initiator Name:</label>
+                                                  <input #txtInitiatorName="ngModel"  required minlength="5" maxlength="30"   type="text" class="form-control" id="txtInitiatorName" name="txtInitiatorName" [(ngModel)]="PIRDetails.initiator_name">
+                                                  <div *ngIf="txtInitiatorName.errors && (txtInitiatorName.dirty || txtInitiatorName.touched)" class="alert alert-danger">
+                                                      <div [hidden]="!txtInitiatorName.errors.required">
+                                                          Field required!
+                                                      </div>
+                                                      <div [hidden]="!txtInitiatorName.errors.minlength">
+                                                          Field must be at least 5 characters long.
+                                                      </div>
+                                                      <div [hidden]="!txtInitiatorName.errors.maxlength">
+                                                          Field cannot be more than 30 characters long.
+                                                      </div>
+                                                  </div>
                                         </div>
-                                     </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                  <label class="control-label col-sm-3 col-form-label">Status:</label>
-                                  <div class="col-sm-9">
-                                       <select  ID="ddlStatus" class="form-control" name="ddlStatus" [(ngModel)]="PIRDetails.status" [disabled]="!fields_disabled" >
-                                          <option value="0">Select Status</option>
-                                          <option value="1">Closed</option>
-                                          <option value="2">Open</option> 
-                                          <option value="3">In Progress</option> 
-                                          <option value="4">Defered</option> 
-                                          <option value="5">Duplicate</option> 
-                                          <option value="6">Rejected</option> 
-                                      </select>
-                                  </div>
-                                </div>
-                                <div class="col-md-12 form-group required">
-                                  <label class="control-label col-sm-3 col-form-label">Email Address:</label>
-                                    <div class="col-sm-9">
-                                      <input  #txtemailaddress="ngModel" required
-                                      email="true"
-                                      type="email" class="form-control" id="txtemailaddress" name="txtemailaddress"  [(ngModel)]="PIRDetails.email_address">
-                                      <div *ngIf="txtemailaddress.errors && (txtemailaddress.dirty || txtemailaddress.touched)" class="alert alert-danger">
-                                          <div [hidden]="!txtemailaddress.errors.required">
-                                              Field required!
+                                        <div class="col-md-6 form-group required">
+                                                <label class="control-label">Email Address:</label>
+                                                    <input  #txtemailaddress="ngModel" required
+                                                    email="true"
+                                                    type="email" class="form-control" id="txtemailaddress" name="txtemailaddress"  [(ngModel)]="PIRDetails.email_address">
+                                                    <div *ngIf="txtemailaddress.errors && (txtemailaddress.dirty || txtemailaddress.touched)" class="alert alert-danger">
+                                                        <div [hidden]="!txtemailaddress.errors.required">
+                                                            Field required!
+                                                        </div>
+                                                        <div  *ngIf="txtemailaddress.errors && txtemailaddress.errors.pattern">
+                                                            Email is invalid
+                                                        </div>
+                                                        <div  *ngIf="txtemailaddress.errors">
+                                                          Email is invalid
+                                                      </div>
+                                                    </div>
+                                                 </div>
+                                       </div>
+         
+                                        <div class="form-row">
+                                                <div class="col-md-6 form-group">
+                                                        <label class="control-label">Proposed Change Details:</label>
+                                                        <textarea   #txtProposedChangedetails="ngModel"  required class="form-control" rows="3" id="txtProposedChangedetails" name="txtProposedChangedetails" [(ngModel)]="PIRDetails.proposed_details"></textarea>
+                                                        <div *ngIf="txtProposedChangedetails.errors && (txtProposedChangedetails.dirty || txtProposedChangedetails.touched)" class="alert alert-danger">
+                                                          <div [hidden]="!txtProposedChangedetails.errors.required">
+                                                              Field required!
+                                                          </div>
+                                                        </div>  
+                                                   </div>
+                                                   <div  class="col-md-6 form-group">
+                                                        <label class="control-label">Reason for Change:</label>
+                                                        <textarea  #txtReasonforChange="ngModel"  required class="form-control" rows="3" id="txtReasonforChange" name="txtReasonforChange" [(ngModel)]="PIRDetails.reason"></textarea>
+                                                        <div *ngIf="txtReasonforChange.errors && (txtReasonforChange.dirty || txtReasonforChange.touched)" class="alert alert-danger">
+                                                          <div [hidden]="!txtReasonforChange.errors.required">
+                                                              Field required!
+                                                          </div>
+                                                        </div>  
+                                                   </div>
                                           </div>
-                                          <div  *ngIf="txtemailaddress.errors && txtemailaddress.errors.pattern">
-                                              Email is invalid
+                             
+                                          <div class="form-row">
+                                                <div class="col-md-6 form-group">
+                                                        <label class="control-label">Remarks:</label>
+                                                        <textarea  #txtremarks="ngModel"  class="form-control" rows="3" id="txtremarks" name="txtremarks" [(ngModel)]="PIRDetails.remarks"></textarea>
+                                                        <!-- <div *ngIf="txtremarks.errors && (txtremarks.dirty || txtremarks.touched)" class="alert alert-danger">
+                                                          <div [hidden]="!txtremarks.errors.required">
+                                                              Field required!
+                                                          </div>
+                                                        </div>    -->
+                                                   </div>
+                                                   <!-- <div class="col-md-6 form-group">
+                                                        <label class="control-label">Comments:</label>
+                                                        <textarea  #txtcomments="ngModel"  class="form-control" rows="3" id="txtcomments" name="txtcomments" [(ngModel)]="PIRDetails.comments"></textarea>
+                                                    
+                                                   </div> -->
                                           </div>
-                                          <div  *ngIf="txtemailaddress.errors">
-                                            Email is invalid
-                                        </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              <div class="col-md-12 form-group">
-                                  <label class="control-label col-sm-3 col-form-label">Proposed Change Details:</label>
-                                  <div class="col-sm-9">
-                                  <textarea   #txtProposedChangedetails="ngModel"  required class="form-control" rows="5" id="txtProposedChangedetails" name="txtProposedChangedetails" [(ngModel)]="PIRDetails.proposed_details"></textarea>
-                                  <div *ngIf="txtProposedChangedetails.errors && (txtProposedChangedetails.dirty || txtProposedChangedetails.touched)" class="alert alert-danger">
-                                    <div [hidden]="!txtProposedChangedetails.errors.required">
-                                        Field required!
-                                    </div>
-                                  </div>  
-                                  </div>
-                             </div>
-                             <div  class="col-md-12 form-group">
-                                  <label class="control-label col-sm-3 col-form-label">Reason for Change:</label>
-                                  <div class="col-sm-9">
-                                  <textarea  #txtReasonforChange="ngModel"  required class="form-control" rows="5" id="txtReasonforChange" name="txtReasonforChange" [(ngModel)]="PIRDetails.reason"></textarea>
-                                  <div *ngIf="txtReasonforChange.errors && (txtReasonforChange.dirty || txtReasonforChange.touched)" class="alert alert-danger">
-                                    <div [hidden]="!txtReasonforChange.errors.required">
-                                        Field required!
-                                    </div>
-                                  </div>  
-                                </div>
-                             </div>
+                
+                                          <!-- <div class="form-row">
+                                                <div class="col-md-6 form-group">
+                                                        <label class="control-label">Initiator Date:</label>
+                                                        <input   #InitiatorDate="ngModel"  required   type="date" id="InitiatorDate" name="InitiatorDate" [(ngModel)]="PIRDetails.initiator_date" class="form-control" [disabled]="!fields_disabled" />                                  
+                                                        <div *ngIf="InitiatorDate.errors && (InitiatorDate.dirty || InitiatorDate.touched)" class="alert alert-danger">
+                                                            <div [hidden]="!InitiatorDate.errors.required">
+                                                                Field required!
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                        <label class="control-label">Status:</label>
+                                                            <select  ID="ddlStatus" class="form-control" name="ddlStatus" [(ngModel)]="PIRDetails.status" [disabled]="!fields_disabled" >
+                                                                <option value="0">Select Status</option>
+                                                                <option value="1">Closed</option>
+                                                                <option value="2">Open</option> 
+                                                                <option value="3">In Progress</option> 
+                                                                <option value="4">Defered</option> 
+                                                                <option value="5">Duplicate</option> 
+                                                                <option value="6">Rejected</option> 
+                                                            </select>
+                                                </div>
+                                                    
+                                          </div> -->
+                      
+                  
+
+
                              <div class="col-md-12 form-group">
-                                  <label class="control-label col-sm-3 col-form-label">Remarks:</label>
-                                  <div class="col-sm-9">
-                                  <textarea  #txtremarks="ngModel" required class="form-control" rows="5" id="txtremarks" name="txtremarks" [(ngModel)]="PIRDetails.remarks"></textarea>
-                                  <div *ngIf="txtremarks.errors && (txtremarks.dirty || txtremarks.touched)" class="alert alert-danger">
-                                    <div [hidden]="!txtremarks.errors.required">
-                                        Field required!
-                                    </div>
-                                  </div>   
-                                 </div>
-                             </div>
-                             <div class="col-md-12 form-group">
-                                <div class="col-sm-6" style="float:right" >
+                                <div style="float:right" >
                                         <button type="button" ID="btnReset"  (click)="btnReset()" class="btn btn-primary">Reset</button>
                                         <button type="button" ID="btnSubmit" [disabled]="!pirform.form.valid"  (click)="btnSubmit()"  class="btn btn-primary">
                                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -129,6 +149,16 @@
                         </div>
                          <div style="clear:both;padding-top:15px"></div>
                     </div>
+            </form>
+            <form #pirform="ngForm"  [class.pirinfo]='pirinfo' class="container" >
+                <div style="clear:both;padding-top:15px"></div>
+                <div class="row formsteps myprofile" style="border:1px solid black;">
+                  <div class="col-md-12 form-inline">
+                        <label class="control-label">
+                            <strong>{{PIRInfoStatusMessage}}</strong> 
+                        </label>
+                    </div>
+                </div>
             </form>
     </body>
     </html>

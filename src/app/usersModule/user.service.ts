@@ -31,7 +31,7 @@ export class UserService {
     
     return this.http.post(`${PIRSubmit_URL}`, body, options)
                 .map((res:Response) => res.json())
-                .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+                .catch((error:any) => Observable.throw('Server error'));
   }
   public GET_PIR_RECORDS_FORDT(pagesIndex:number,pageSize:number){
     

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule }    from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS  } from '@angular/common/http';
 //In order to be able to use two-way data binding for form inputs you need to import theFormsModule package in your Angular module
 import { FormsModule, FormGroup,FormControl,Validators,FormBuilder,ReactiveFormsModule } from '@angular/forms'; 
 // for http req and res we use below module
@@ -40,6 +40,8 @@ import { SepgcoreTeamModule } from './sepgcoreTeamModule/sepgcore-team.module';
 
 import { AppGlobalsService } from './app-globals.service';
 
+import * as int from './services/win-auth-interceptor.service';
+
 const appRoutes: Routes = [
   // { path: 'SPOTCHECK', component: SpotCheckStatusComponent },
   // { path: 'ExcelDownalod', component: ExcelDownloadComponent },
@@ -76,7 +78,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations:[ AppComponent,PageNotFoundComponent
     , ModuleSelectorComponent, LoginComponent, RegisterComponent ],
-  imports:    [ BrowserModule ,FileUploadModule, FormsModule,HttpModule,ReactiveFormsModule,
+  imports:    [ BrowserModule ,FileUploadModule, FormsModule,HttpModule,ReactiveFormsModule,HttpClientModule,
     RouterModule.forRoot(appRoutes) ],
   providers: [
     WinAuthInterceptorService,
@@ -86,8 +88,11 @@ const appRoutes: Routes = [
     UserService,
     BaseRequestOptions,
     HttpClientModule,
-    AppGlobalsService
-    
+    AppGlobalsService,
+    {provide: HTTP_INTERCEPTORS,
+    useClass: int.WinAuthInterceptorService,
+    multi: true
+    }
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]

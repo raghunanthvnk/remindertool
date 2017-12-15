@@ -12,7 +12,7 @@ const EXCEL_EXTENSION = '.xlsx';
 @Component({
   selector: 'app-pirhistory',
   templateUrl: './pirhistory.component.html',
-  styleUrls: ['./pirhistory.component.css'],
+  styleUrls: ['./pirhistory.component.css','../../css/index.css'],
   encapsulation: ViewEncapsulation.None,
   providers:[UserService]
 })
@@ -31,6 +31,7 @@ export class PirhistoryComponent implements OnInit {
   totalPages      : number;
   totalrecords    : number;
   downalodedfilename :string;
+  stopBusyConent:boolean=true;
 
 
   constructor(private httpService:UserService,private _router:Router,private route: ActivatedRoute ) {
@@ -41,6 +42,7 @@ export class PirhistoryComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.stopBusyConent=false;
     this.GET_PIR_RECORDS_FORDT(this.rowindex,this.pageSize);
   }
   caluclateProperties()
@@ -58,6 +60,7 @@ export class PirhistoryComponent implements OnInit {
   }
   setPage(page)
   {
+    this.stopBusyConent=false;
     this.currentIndex=page;
     this.pageNumber=page;
     this.rowindex=(this.currentIndex-1)*this.pageSize
@@ -66,6 +69,7 @@ export class PirhistoryComponent implements OnInit {
 
   nextPage()
   {
+    this.stopBusyConent=false;
     this.currentIndex++;
     this.pageNumber++;
     this.rowindex=(this.currentIndex-1)*this.pageSize
@@ -73,6 +77,7 @@ export class PirhistoryComponent implements OnInit {
   }
   prevPage()
   {
+    this.stopBusyConent=false;
     this.currentIndex--;
     this.pageNumber--;
     this.rowindex=(this.currentIndex-1)*this.pageSize
@@ -99,14 +104,17 @@ export class PirhistoryComponent implements OnInit {
         error=> {
             console.log("ERROR: ",error);
             console.log(error.json()); //gives the object object
+            this.stopBusyConent=true;
         },
         () => {
             console.log("Completed");
+            this.stopBusyConent=true;
         }
     );
   }
   DownalodPIRData()
     {
+      this.stopBusyConent=false;
       this.httpService.GetAllPIRHistory().subscribe(
         response=> {
           console.log("VALUE RECEIVED: ",response);
@@ -121,9 +129,11 @@ export class PirhistoryComponent implements OnInit {
         error=> {
             console.log("ERROR: ",error);
             console.log(error.json()); //gives the object object
+            this.stopBusyConent=true;
         },
         () => {
             console.log("Completed");
+            this.stopBusyConent=true;
         }
     );
    }

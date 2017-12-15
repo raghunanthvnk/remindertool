@@ -15,8 +15,11 @@
                <div class="collapse navbar-collapse" style="float: right;"
                          [ngClass]="{ 'in': isIn }"> 
                   <ul class="nav navbar-nav" >
+                        
+                      <li><a [routerLink] = "['/sepgdashboard/SEPGLayout/PIRModification']" routerLinkActive="active"  >PIR Modification</a></li>
                       <li><a [routerLink] = "['/sepgdashboard/SEPGLayout/PIRHistory']" routerLinkActive="active"  >PIR History</a></li>
                       <li><a [routerLink] = "['/sepgdashboard/SEPGLayout/SEPG']" routerLinkActive="active"  >SEPG</a></li>
+                      <li><a [routerLink] = "['/ModuleSelector']" routerLinkActive="active"  >HOME</a></li>
                       <li><a [routerLink] = "['/qualitydashboard/QualityLayout/Logout']" routerLinkActive="active" >Logout</a></li>
                   </ul>
               </div> <!-- #2 -->

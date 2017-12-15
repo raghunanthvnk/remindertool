@@ -32,6 +32,19 @@ export class AuthenticationService {
         })
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+     WindowsauthenticateUser(): Observable<any> {
+        console.log('Calling GetUser');
+        var authenticate_url:string =  this._global.baseAppUrl+'auth/Windowsauthenticate';
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        return this.http.get(`${authenticate_url}`, options)
+        .map((response: Response) => {
+            // login successful if there's a jwt token in the response
+            let user = response.json();
+          console.log(response);
+        })
+        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 
     logout() {
         // remove user from local storage to log user out
